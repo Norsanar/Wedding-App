@@ -1,0 +1,7 @@
+@model Commitment
+<form asp-action="CreateCommitment" asp-controller="Home" method="post" class="d-inline">
+    <input asp-for="WeddingId" type="hidden">
+    @* this following input is for testing, it is not actually used *@
+    <input asp-for="UserId" type="hidden">
+    <input type="submit" value="RSVP" class="btn btn-success">
+</form>

@@ -1,0 +1,18 @@
+﻿@{
+    ViewData["Title"] = "Register/Log in";
+    Layout = "_LoginLayout";
+}
+
+<div class="row">
+    <div class="col-5 m-5">
+        @await Html.PartialAsync("Partials/_RegisterForm")
+    </div>
+    <div class="col-5 m-5">
+        @await Html.PartialAsync("Partials/_LoginForm")
+    </div>
+</div>
+
+@* <div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div> *@

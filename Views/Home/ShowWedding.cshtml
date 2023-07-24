@@ -1,0 +1,18 @@
+@{
+    ViewData["Title"] = $"{Model.NearlywedOne} & {Model.NearlywedTwo}'s wedding";
+}
+
+@model Wedding
+<div class="row justify-content-around">
+    <div class = "col-10 container m-5 p-3 text-light bg-dark">
+        <h1 class="mb-3">@Model.NearlywedOne & @Model.NearlywedTwo's wedding</h1>
+        <h6 class="mb-3">Date: @($"{Model.Date:MMM d, yyyy}")</h6>
+        <h6>Guests:</h6>
+            <ul class="list-unstyled border">
+                @foreach (Commitment c in Model.WeddingGuests)
+                {
+                    <li>@c.Guest.FirstName @c.Guest.LastName</li>
+                }
+            </ul>
+    </div>
+</div>

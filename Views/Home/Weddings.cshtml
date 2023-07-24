@@ -1,0 +1,49 @@
+@{
+    ViewData["Title"] = "Weddings";
+}
+
+@model List<WeddingView>
+<div class="row justify-content-around">
+    <div class = "col-10 container m-5 p-3 text-light bg-dark">
+        <div class="table-responsive">
+            <table class="table table-dark table-striped table-hover align-middle p-2">
+                <thead>
+                    <tr>
+                        <th>Wedding of</th>
+                        <th>Date</th>
+                        <th>Guest Count</th>
+                        <th class="col-3">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (WeddingView w in Model)
+                {
+                    <tr>
+                        <td><a asp-controller="Home" asp-action="ShowWedding" asp-route-id="@w.WeddingId" class="link-light text-decoration-none">@w.NearlywedOne & @w.NearlywedTwo</a></td>
+                        <td>@($"{w.Date:MMM d yyyy}")</td>
+                        <td>@w.GuestCount</td>
+                        <td>
+                        @if (w.WeddingGuests.Count == 0)
+                        {
+                            @await Html.PartialAsync("Partials/_CommitmentForm", new Commitment(){WeddingId = w.WeddingId})
+                        }
+                        else
+                        {
+                            <form asp-action="DestroyCommitment" asp-controller="Home" asp-route-id="@w.WeddingGuests[0].CommitmentId" method="post" class="d-inline">
+                                <input type="submit" value="Un-RSVP" class="btn btn-warning">
+                            </form>
+                        }
+                        @if (w.CanDelete)
+                        {
+                            <form asp-action="DestroyWedding" asp-controller="Home" asp-route-id="@w.WeddingId" method="post" class="d-inline">
+                                <input type="submit" value="Delete" class="btn btn-danger">
+                            </form>
+                        }
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
